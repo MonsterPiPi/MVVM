@@ -2,39 +2,57 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
+        <import type="example.com.mvvm.bean.Food"/>
         <variable
+            
             name="food"
-            type="example.com.mvvm.bean.Food"/>
+            type="Food"/>
     </data>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="96dp"
-        >
-        <ImageView
-            android:id="@+id/iv"
-            android:layout_width="96dp"
-            android:layout_height="96dp"
-            android:padding="6dp"
-            app:foodPhoto="@{food.foodPhoto}"/>
 
-        <TextView
-            android:id="@+id/description"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_toRightOf="@id/iv"
-            android:ellipsize="end"
-            android:maxLines="3"
-            android:text="@{food.name}"/>
+            android:onClick="@{food.onItemClick}"
+            >
+            <android.support.v7.widget.CardView
+                android:layout_width="350dp"
+                android:layout_height="270dp"
+                android:layout_marginTop="18dp"
+                app:cardCornerRadius="6dp"
+                app:cardUseCompatPadding="true"
+                app:cardPreventCornerOverlap="false"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+            <ImageView
+                android:id="@+id/iv"
+                android:layout_width="match_parent"
+                android:layout_height="173dp"
+                app:foodPhoto="@{food.foodPhoto}" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_toRightOf="@id/iv"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="2dp"
-            android:text="@{food.material}"
-            android:textStyle="bold"/>
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:layout_marginTop="20dp"
+                android:text="@{food.name}"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{food.material}"
+                android:maxLines="3"
+                android:layout_marginTop="20dp"
+                android:textStyle="bold"/>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+        </RelativeLayout>
+
+
 </layout>

@@ -24,21 +24,45 @@ public class MainActivity extends AppCompatActivity {
 
     private List<Food> foods;
     private ListView lv;
-
+    private MainActivity mActivity;
+    private MyBaseAdapter<Food> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //用 DatabindingUtil.setContentView() 来替换掉 setContentView()
         ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        //lv = ((ListView) findViewById(R.id.lv));
+        //setContentView(R.layout.activity_main);
+        mActivity = this;
+
         User user = new User("testFirst", "testLast");
         binding.setUser(user);
         binding.setFood(new Food("11", "张三","http://img2.cache.netease.com/auto/2016/7/28/201607282215432cd8a.jpg"));
         testJsoup();
+        initView();
+        initData();
 
     }
+    private void initView() {
+        lv = (ListView) findViewById(R.id.lv);
 
+    }
+    private void initData() {
+        if (foods == null) {
+            foods = new ArrayList<>();
+        }
+        for (int i = 0; i < 30; i++) {
+            foods.add(new Food("小明", "一花一世界", "http://pic.sc.chinaz.com/files/pic/pic9/201412/apic8065.jpg"));
+        }
+        if ( adapter== null) {
+            adapter = new MyBaseAdapter<>(mActivity, R.layout.food_item, BR.food, foods);
+            lv.setAdapter(adapter);
+        } else {
+            adapter.notifyDataSetChanged();
+        }
+
+
+    }
 
     public void testJsoup(){
         new Thread(new Runnable() {

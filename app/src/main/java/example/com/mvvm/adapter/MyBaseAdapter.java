@@ -15,22 +15,19 @@ import java.util.List;
  */
 
 public class MyBaseAdapter<T> extends BaseAdapter {
-    private Context context;
     private LayoutInflater inflater;
     private int layoutId;
     private int variableId;
     private List<T> list;
 
-    public MyBaseAdapter(Context context, int layoutId, List<T> list, int resId) {
-        this.context = context;
+    public MyBaseAdapter(Context context, int layoutId, int variableId, List<T> list) {
         this.layoutId = layoutId;
+        this.variableId = variableId;
         this.list = list;
-        this.variableId = resId;
         inflater = LayoutInflater.from(context);
     }
 
     @Override
-
     public int getCount() {
         return list.size();
     }
@@ -50,7 +47,7 @@ public class MyBaseAdapter<T> extends BaseAdapter {
         ViewDataBinding dataBinding;
         if (convertView == null) {
             dataBinding = DataBindingUtil.inflate(inflater, layoutId, parent, false);
-        }else{
+        } else {
             dataBinding = DataBindingUtil.getBinding(convertView);
         }
         dataBinding.setVariable(variableId, list.get(position));
