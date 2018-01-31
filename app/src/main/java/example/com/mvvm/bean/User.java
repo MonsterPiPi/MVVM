@@ -5,8 +5,8 @@ package example.com.mvvm.bean;
  */
 
 public class User {
-    private final String firstName;
-    private final String lastName;
+    private  String firstName;
+    private  String lastName;
 
     public User(String firstName, String lastName) {
         this.firstName = firstName;
@@ -17,7 +17,11 @@ public class User {
         return firstName;
     }
 
+
+
     public String getLastName() {
         return lastName;
     }
+
+
 }
