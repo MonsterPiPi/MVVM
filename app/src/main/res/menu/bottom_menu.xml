@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/item_food"
+        android:icon="@drawable/food"
+        android:title="新闻" />
+    <item
+        android:id="@+id/item_map"
+        android:icon="@drawable/map"
+        android:title="图书" />
+    <item
+        android:id="@+id/item_photo"
+        android:icon="@drawable/picture"
+        android:title="发现" />
+    <item
+        android:id="@+id/item_about"
+        android:icon="@drawable/version"
+        android:title="更多" />
+</menu>
