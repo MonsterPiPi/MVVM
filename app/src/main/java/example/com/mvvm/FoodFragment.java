@@ -1,10 +1,12 @@
 package example.com.mvvm;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import org.jsoup.Jsoup;
@@ -19,7 +21,7 @@ import example.com.mvvm.adapter.MyBaseAdapter;
 import example.com.mvvm.base.PowerfulFragment;
 import example.com.mvvm.bean.Food;
 
-public class FoodFragment extends PowerfulFragment {
+public class FoodFragment extends PowerfulFragment implements AdapterView.OnItemClickListener {
 
     private List<Food> foods;
     private ListView lv;
@@ -59,7 +61,7 @@ public class FoodFragment extends PowerfulFragment {
 
     @Override
     protected void initListener() {
-
+        lv.setOnItemClickListener(this);
     }
 
     @Override
@@ -111,5 +113,16 @@ public class FoodFragment extends PowerfulFragment {
     @Override
     public void onClick(View v) {
 
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Intent intent=new Intent();
+        intent.setClass(getContext(), FoodActivity.class);
+        //在Intent对象当中添加一个键值对
+        intent.putExtra("url",foods.get(position).getUrl());
+        startActivity(intent);
+        //进入
+        in(view);
     }
 }

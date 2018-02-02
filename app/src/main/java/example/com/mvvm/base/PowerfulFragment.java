@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
+import example.com.mvvm.R;
 
 /**
  * 基础Fragment
@@ -148,7 +149,7 @@ public abstract class PowerfulFragment extends Fragment implements View.OnClickL
     /**
      * dialog
      */
-    public void showProgressDialog(String str){
+    public  void showProgressDialog(String str){
         progressDialog= new ProgressDialog(getContext());
         progressDialog.setMessage(str);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -195,7 +196,14 @@ public abstract class PowerfulFragment extends Fragment implements View.OnClickL
         ////返回到上一个Fragment（同一个Activity中）
         getActivity().getSupportFragmentManager().popBackStack();
     }
+    public void in(View v) {
+        getActivity().overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
+    }
 
+    public void out(View v) {
+        getActivity().finish();
+        getActivity().overridePendingTransition(R.anim.anim_in,R.anim.anim_out);
+    }
 }
 
 

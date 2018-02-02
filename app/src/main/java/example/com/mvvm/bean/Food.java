@@ -1,5 +1,6 @@
 package example.com.mvvm.bean;
 
+import android.content.Intent;
 import android.databinding.BaseObservable;
 import android.databinding.BindingAdapter;
 import android.view.View;
@@ -7,6 +8,8 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
+
+import example.com.mvvm.MainActivity;
 
 /**
  * Created by DELL on 2018/1/31.
@@ -55,6 +58,7 @@ public class Food extends BaseObservable {
      */
     public void onItemClick(View view) {
         Toast.makeText(view.getContext(), getUrl(), Toast.LENGTH_SHORT).show();
+
     }
 
     public String getName() {
