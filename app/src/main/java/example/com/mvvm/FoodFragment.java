@@ -27,6 +27,7 @@ public class FoodFragment extends PowerfulFragment {
     private String name;
     private String material;
     private String foodPhoto;
+    private String url;
     private Handler hander = new Handler(){
         @Override
         public void handleMessage(Message msg) {
@@ -55,9 +56,6 @@ public class FoodFragment extends PowerfulFragment {
 
     }
 
-    private void setFoodData() {
-
-    }
 
     @Override
     protected void initListener() {
@@ -87,10 +85,11 @@ public class FoodFragment extends PowerfulFragment {
                     for (Element element : elements) {
 
                         name = element.select("div.pic").select("a").attr("title");
+                        url=element.select("div.pic").select("a").attr("href");
                         material="\u3000\u3000"+element.select("div.detail").select("p.subcontent").html();
                         foodPhoto = element.select("div.pic").select("img").attr("data-src");
-                        foods.add(new Food(name,material,foodPhoto));
-                        Log.i("mytag", "name:" + name + "material:"+material+"pic:" + foodPhoto);
+                        foods.add(new Food(name,material,foodPhoto,url));
+                        Log.i("mytag", "name:" + name + "material:"+material+"pic:" + foodPhoto+"href:"+url);
 
                     }
                     if (adapter== null) {

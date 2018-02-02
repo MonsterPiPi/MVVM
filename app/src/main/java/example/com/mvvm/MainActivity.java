@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
         User user = new User("testFirst", "testLast");
         binding.setUser(user);
-        binding.setFood(new Food("11", "张三","http://img2.cache.netease.com/auto/2016/7/28/201607282215432cd8a.jpg"));
+        binding.setFood(new Food("11", "张三","http://img2.cache.netease.com/auto/2016/7/28/201607282215432cd8a.jpg","22"));
         testJsoup();
         initView();
         initData();
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
             foods = new ArrayList<>();
         }
         for (int i = 0; i < 30; i++) {
-            foods.add(new Food("小明", "一花一世界", "http://pic.sc.chinaz.com/files/pic/pic9/201412/apic8065.jpg"));
+            foods.add(new Food("小明", "一花一世界", "http://pic.sc.chinaz.com/files/pic/pic9/201412/apic8065.jpg","222"));
         }
         if ( adapter== null) {
             adapter = new MyBaseAdapter<>(mActivity, R.layout.food_item, BR.food, foods);

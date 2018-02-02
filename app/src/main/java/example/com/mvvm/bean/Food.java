@@ -25,12 +25,16 @@ public class Food extends BaseObservable {
      * 美食图片
      */
     private  String foodPhoto;
+    /**
+     * 美食详情界面的url
+     */
+    private String url;
 
-
-    public Food(String name,String material,String foodPhoto){
+    public Food(String name,String material,String foodPhoto,String url){
         this.name=name;
         this.material=material;
         this.foodPhoto=foodPhoto;
+        this.url=url;
     }
 
     /**
@@ -50,7 +54,7 @@ public class Food extends BaseObservable {
      * @param view
      */
     public void onItemClick(View view) {
-        Toast.makeText(view.getContext(), getName(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(view.getContext(), getUrl(), Toast.LENGTH_SHORT).show();
     }
 
     public String getName() {
@@ -65,6 +69,10 @@ public class Food extends BaseObservable {
 
     public String getFoodPhoto() {
         return foodPhoto;
+    }
+
+    public String getUrl() {
+        return url;
     }
 
 

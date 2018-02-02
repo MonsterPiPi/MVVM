@@ -64,6 +64,16 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onNavigationItemClick(int index) {
                 pager.setCurrentItem(index);
+                switch (index){
+                    case 0:textView.setText("美食");
+                        break;
+                    case 1:textView.setText("地图");
+                        break;
+                    case 2:textView.setText("摄影");
+                        break;
+                    case 3:textView.setText("关于");
+                        break;
+                }
             }
         });
     }
@@ -80,6 +90,7 @@ public class HomeActivity extends AppCompatActivity {
         bottomNavigationView.isColoredBackground(false);
         bottomNavigationView.setItemActiveColorWithoutColoredBackground(R.color.white);
         pager.setAdapter(new FragmentAdapter(getSupportFragmentManager()));
+        pager.setOffscreenPageLimit(3);
         ContextCompat.getColor(getBaseContext(), R.color.no1);
         bottomNavigationView.setUpWithViewPager(pager , colors , imageResources);
     }
