@@ -1,40 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fab="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
             name="food"
             type="example.com.mvvm.bean.Food"/>
+        <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener" />
 
     </data>
-
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorBackground">
     <LinearLayout
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorBackground"
-        android:orientation="vertical">
-        <LinearLayout
-            android:id="@+id/toolbar"
+        android:layout_height="45dp"
+        android:background="@color/colorWhite"
+        android:layout_alignParentStart="true"
+        android:elevation="3dp"
+        android:layout_alignParentTop="true"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/tv"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:background="@color/colorWhite"
-            android:elevation="3dp"
-            android:layout_alignParentTop="true"
-            android:orientation="horizontal">
-            <TextView
-                android:id="@+id/tv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:layout_marginTop="7dp"
-                android:text="详情"
-                android:textSize="20sp"
-                android:textColor="@color/colorFont"/>
-        </LinearLayout>
-      <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:textSize="20sp"
-          android:text="@{food.url}"/>
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="7dp"
+            android:text="详情"
+            android:textSize="20sp"
+            android:textColor="@color/colorFont"/>
     </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_centerInParent="true"
+        android:text="@{food.url}"/>
+    <com.getbase.floatingactionbutton.FloatingActionButton
+        android:id="@+id/float_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        fab:fab_icon="@drawable/back"
+        fab:fab_colorNormal="@color/colorWhite"
+        fab:fab_colorPressed="@color/colorBackground"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="16dp"/>
+</RelativeLayout>
+
+
+
+
 </layout>

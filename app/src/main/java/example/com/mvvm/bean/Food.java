@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.squareup.picasso.Picasso;
 
 import example.com.mvvm.MainActivity;
+import example.com.mvvm.base.BaseActivity;
 
 /**
  * Created by DELL on 2018/1/31.
