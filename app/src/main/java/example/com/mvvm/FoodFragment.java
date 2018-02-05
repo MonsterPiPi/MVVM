@@ -15,7 +15,9 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import example.com.mvvm.adapter.MyBaseAdapter;
 import example.com.mvvm.base.PowerfulFragment;
@@ -30,6 +32,7 @@ public class FoodFragment extends PowerfulFragment implements AdapterView.OnItem
     private String material;
     private String foodPhoto;
     private String url;
+    private String author;
     private Handler hander = new Handler(){
         @Override
         public void handleMessage(Message msg) {
@@ -88,9 +91,13 @@ public class FoodFragment extends PowerfulFragment implements AdapterView.OnItem
 
                         name = element.select("div.pic").select("a").attr("title");
                         url=element.select("div.pic").select("a").attr("href");
-                        material="\u3000\u3000"+element.select("div.detail").select("p.subcontent").html();
+                        String materialBad=element.select("div.detail").select("p.subcontent").html();
+                        author=element.select("div.detail").select("p.subline").select("a").html();
+                        String []test=materialBad.split("：");//中文冒号
+                        StringBuilder sb = new StringBuilder();
+                        material= sb.append(test[1]).toString();
                         foodPhoto = element.select("div.pic").select("img").attr("data-src");
-                        foods.add(new Food(name,material,foodPhoto,url));
+                        foods.add(new Food(name,material,foodPhoto,url,author));
                         Log.i("mytag", "name:" + name + "material:"+material+"pic:" + foodPhoto+"href:"+url);
 
                     }
@@ -120,7 +127,7 @@ public class FoodFragment extends PowerfulFragment implements AdapterView.OnItem
         Intent intent=new Intent();
         intent.setClass(getContext(), FoodActivity.class);
         //在Intent对象当中添加一个键值对
-        intent.putExtra("url",foods.get(position).getUrl());
+        intent.putExtra("food",foods.get(position));
         startActivity(intent);
         //进入
         in(view);

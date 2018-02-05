@@ -11,28 +11,30 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import example.com.mvvm.base.BaseActivity;
 import example.com.mvvm.bean.Food;
 import example.com.mvvm.databinding.ActivityFoodBinding;
 
 public class FoodActivity extends BaseActivity {
 
-    private String url;
-
+    private Food food;
     private FloatingActionButton floatBtn;
+    private ActivityFoodBinding binding;
+    private String materialOther="";
+    private List<String> some;
     @Override
     protected void initView() {
         //用 DatabindingUtil.setContentView() 来替换掉 setContentView()
-        ActivityFoodBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_food);
-        //接收传递的数据
-        Intent intent = getIntent();
-        if (intent != null) {
-            url = intent.getStringExtra("url");
-        }
+        binding= DataBindingUtil.setContentView(this, R.layout.activity_food);
+        //接收传递的对象
+        food = (Food)getIntent().getSerializableExtra("food");
         floatBtn=(FloatingActionButton)findViewById(R.id.float_btn);
-        binding.setFood(new Food("testFirst", "testLast","22",url));
+        some=new ArrayList<>();
         showProgressDialog("正在加载数据");
-        LoadData(url);
+        LoadData(food.getUrl());
     }
 
     private void LoadData(final String url) {
@@ -50,14 +52,28 @@ public class FoodActivity extends BaseActivity {
 
                     Log.i("mytag",   "pic:" + picture);
 
-                    Elements elementsDetail=elements.select("div.recipeCategory_sub_R").select("ul").select("li");
+                    Elements elementsDetail=elements.select("div.mt30").select("ul").select("li");
 
                     for (Element element:elementsDetail){
                         String one=element.select("span.category_s1").select("a").html();
-                        String two=element.select("span.category_s2").html();
-                        Log.i("mytag",   "one:" + one+"        two=   "+two);
+                        //String two=element.select("span.category_s2").html();
+                        //Log.i("mytag",   "one:" + one+"        two=   "+two);
+                        materialOther=materialOther+one+"     ";
                     }
+                    Elements elements1=elements.select("div.mt16");
+                    for (Element element:elements1){
+                        String recipeTip=element.html();
+                        some.add(recipeTip);
+                        Log.i("mytag",   "one:" +recipeTip);
+                    }
+                    food.setMaterialOther(materialOther);
+                    String []test=some.get(0).split("：");//中文冒号
+                    StringBuilder sb = new StringBuilder();
+                    String kitchenware = sb.append(test[1]).toString();
+                    food.setKitchenware(kitchenware);
+                    binding.setFood(food);
                     Thread.sleep(2000);
+
                     dismissProgressDialog();
                 }catch(Exception e) {
                     Log.i("mytag", e.toString());

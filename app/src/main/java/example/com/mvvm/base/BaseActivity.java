@@ -87,8 +87,8 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
     public  void showProgressDialog(String str){
         pDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
         pDialog.getProgressHelper().setBarColor(Color.parseColor("#486B8A"));
-        pDialog.setTitle("Waitting");
         pDialog.setContentText(str);
+        pDialog.setTitleText(" ");
         pDialog.setCancelable(false);
         pDialog.show();
     }

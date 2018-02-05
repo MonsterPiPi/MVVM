@@ -9,14 +9,14 @@ import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
-import example.com.mvvm.MainActivity;
-import example.com.mvvm.base.BaseActivity;
+import java.io.Serializable;
+
 
 /**
  * Created by DELL on 2018/1/31.
  */
 
-public class Food extends BaseObservable {
+public class Food extends BaseObservable implements Serializable {
     /**
      * 美食名称
      */
@@ -26,6 +26,14 @@ public class Food extends BaseObservable {
      */
     private  String material;
     /**
+     * 美食概述
+     */
+    private String materialOther;
+    /**
+     * 美食厨具
+     */
+    private String kitchenware;
+    /**
      * 美食图片
      */
     private  String foodPhoto;
@@ -34,11 +42,16 @@ public class Food extends BaseObservable {
      */
     private String url;
 
-    public Food(String name,String material,String foodPhoto,String url){
+    /**
+     * 美食作者
+     */
+    private String author;
+    public Food(String name,String material,String foodPhoto,String url,String author){
         this.name=name;
         this.material=material;
         this.foodPhoto=foodPhoto;
         this.url=url;
+        this.author=author;
     }
 
     /**
@@ -50,6 +63,7 @@ public class Food extends BaseObservable {
     public static void getInternetImage(ImageView iv, String foodPhoto) {
         Picasso.with(iv.getContext())
                 .load(foodPhoto)
+                .resize(1200,1200)
                 .into(iv);
     }
 
@@ -80,5 +94,43 @@ public class Food extends BaseObservable {
         return url;
     }
 
+    public String getAuthor() {
+        return author;
+    }
 
+    public String getMaterialOther() {
+        return materialOther;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setMaterial(String material) {
+        this.material = material;
+    }
+
+    public void setMaterialOther(String materialOther) {
+        this.materialOther = materialOther;
+    }
+
+    public void setFoodPhoto(String foodPhoto) {
+        this.foodPhoto = foodPhoto;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public String getKitchenware() {
+        return kitchenware;
+    }
+
+    public void setKitchenware(String kitchenware) {
+        this.kitchenware = kitchenware;
+    }
 }
