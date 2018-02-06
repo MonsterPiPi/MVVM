@@ -10,6 +10,8 @@ import android.widget.Toast;
 import com.squareup.picasso.Picasso;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -41,6 +43,7 @@ public class Food extends BaseObservable implements Serializable {
      * 美食详情界面的url
      */
     private String url;
+
 
     /**
      * 美食作者

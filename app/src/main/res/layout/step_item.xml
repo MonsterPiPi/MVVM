@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+   >
+    <data>
+        <import type="example.com.mvvm.bean.FoodStep"/>
+        <variable
+            name="foodStep"
+            type="FoodStep"/>
+    </data>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="20dp"
+                >
+
+                <TextView
+                    android:id="@+id/stepNum_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:text="@{foodStep.stepNum}"/>
+
+                <TextView
+                    android:id="@+id/stepContext_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{foodStep.stepContext}"
+                    android:maxLines="3"
+                    android:gravity="center"
+                    android:textSize="15sp"
+                    android:lineSpacingExtra="3dp"
+                    android:layout_marginTop="6dp"
+                    />
+            </LinearLayout>
+
+
+
+</layout>
